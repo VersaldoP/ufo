@@ -24,6 +24,7 @@ public class SightingDAO {
 				 *  quindi devo formattarli con uno spazio finali se divido !!!!
 				 */
 		PreparedStatement st = conn.prepareStatement(sql);
+		
 		ResultSet res = st.executeQuery();
 		
 		List<String> formeUfo= new ArrayList<>();
@@ -32,6 +33,7 @@ public class SightingDAO {
 			formeUfo.add(forma);
 		
 							}
+		st.close();
 		conn.close();
 		return formeUfo;
 		
@@ -50,16 +52,19 @@ public class SightingDAO {
 	
 	public int CountByShape(String shape) {
 		try {
-			String sql2= "SELECT COUNT(*)AS cnt FROM sighting WHERE shape=?";
-			String scelta ="cirlcle";
 			Connection conn = DBConnect.getConnection();
+			String sql2= "SELECT COUNT(*)AS cnt FROM sighting WHERE shape=?";
+			
+			
 			PreparedStatement st2 = conn.prepareStatement(sql2);
-			st2.setString(1,scelta);
+			
+			st2.setString(1,shape);
 			ResultSet res2=st2.executeQuery();
+			
 			res2.first();
 			int count = res2.getInt("cnt");
-			
-		   st2.close();
+			st2.close();
+			conn.close();
 		    return count;
 			
 //		   System.out.println("UFO DI FORMA "+scelta+" sono :"+count);

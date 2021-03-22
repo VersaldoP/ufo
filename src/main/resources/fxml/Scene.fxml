@@ -14,11 +14,11 @@
             <HBox spacing="10.0">
                <children>
                   <Label text="Forma" />
-                  <ComboBox prefWidth="150.0" />
-                  <Button mnemonicParsing="false" text="conta" />
+                  <ComboBox fx:id="boxForma" prefWidth="150.0" />
+                  <Button fx:id="btnConta" mnemonicParsing="false" onAction="#doConta" text="conta" />
                </children>
             </HBox>
-            <Label text="Numero di Avvistamenti" />
+            <Label fx:id="txtMessage" text="Numero di Avvistamenti" />
          </children>
       </VBox>
    </center>

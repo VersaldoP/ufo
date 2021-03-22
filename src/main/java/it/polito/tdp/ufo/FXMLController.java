@@ -2,24 +2,57 @@ package it.polito.tdp.ufo;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import it.polito.tdp.ufo.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 
-public class FXMLController implements Initializable {
-    
+public class FXMLController {
+	private Model model;
+
     @FXML
-    private Label label;
-    
+    private ResourceBundle resources;
+
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
+    private URL location;
+
+    @FXML
+    private ComboBox<String> boxForma;
+
+    @FXML
+    private Button btnConta;
+
+    @FXML
+    private Label txtMessage;
+
+    @FXML
+    void doConta(ActionEvent event) {
+    	String forma =  boxForma.getValue();
+    	int count = model.getCountByForma(forma);
+    	txtMessage.setText("Gli UFO della forma "+forma+" sono: "+count);
+
     }
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+    
+    
+    
+    public void setModel(Model m) {
+		// TODO Auto-generated method stub
+    	this.model=m;
+    	boxForma.getItems().addAll(this.model.getFormeUFO());
+	} 
+
+    @FXML
+    void initialize() {
+        assert boxForma != null : "fx:id=\"boxForma\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert btnConta != null : "fx:id=\"btnConta\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert txtMessage != null : "fx:id=\"txtMessage\" was not injected: check your FXML file 'Scene.fxml'.";
+
+    }
+
+
+	   
 }

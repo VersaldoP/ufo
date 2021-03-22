@@ -59,6 +59,12 @@ public class TestDB {
 		
 		SightingDAO dao = new SightingDAO();
 		List<String> formeUFO = dao.readShapes();
+		
+		for(String forma:formeUFO) {
+			int count = dao.CountByShape(forma);
+			System.out.println("Ufo di forma "+forma+" sono: "+count);
+			
+		}
 	}
 
 	private static void createStatement() {
